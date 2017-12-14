@@ -1,8 +1,101 @@
+@mixin overflow-auto($direction: 'both') {
+    @if $direction == 'both' {
+        overflow: auto;
+    } @else {
+        overflow-#{$direction}: auto;
+    }
+    -webkit-overflow-scrolling: touch;
+}
+
+$padding: 10px;
+$blue: #2196f3;
+$font-size-s: 12px;
+$red: #f44336;
+$gray: #707d8b;
+$font-size: 14px;
+$gray-light: #eceffe;
+
 .timing {
-    padding: 10px;
-    .tip {
-        padding: 10px;
+    @include overflow-auto(y);
+    .performance-timing {
+        padding: $padding 0;
+        .inner-wrapper {
+            background: $blue;
+            .bar {
+                @include overflow-auto(x);
+                border-bottom: 1px solid #fff;
+                span {
+                    font-size: $font-size-s;
+                    white-space: nowrap;
+                    color: #fff;
+                    padding: 5px 0;
+                    background: $red;
+                    display: inline-block;
+                }
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+    .performance-timing-data {
+        padding-bottom: $padding;
+        text-align: center;
+        display: none;
+        table {
+            width: 100%;
+            background: #fff;
+            border-collapse: collapse;
+            text-align: left;
+            th {
+                background: $gray;
+                text-align: left;
+                color: #fff;
+                font-size: $font-size;
+            }
+            td {
+                font-size: $font-size-s;
+            }
+            th, td {
+                padding: 10px;
+            }
+        }
+    }
+    .title {
+        background: $gray;
+        padding: $padding;
+        color: #fff;
+    }
+    .entries {
         background: #fff;
-        color: #263238;
+        border-bottom: 1px solid $gray-light;
+        margin-bottom: 10px;
+        li {
+            @include overflow-auto(x);
+            cursor: pointer;
+            border-top: 1px solid $gray-light;
+            height: 41px;
+            white-space: nowrap;
+            &.error {
+                span {
+                    color: $red;
+                }
+            }
+            span {
+                display: inline-block;
+                line-height: 40px;
+                height: 40px;
+                padding: 0 10px;
+                font-size: $font-size-s;
+                vertical-align: top;
+            }
+            &:nth-child(even) {
+                background: $gray-light;
+            }
+        }
+    }
+    .entries {
+        @include overflow-auto(y);
+        max-height: 200px;
     }
 }

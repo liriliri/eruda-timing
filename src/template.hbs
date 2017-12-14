@@ -1,1 +1,44 @@
-<div class="eruda-tip">Put whatever you want here:)</div>
+{{#if timing}}
+    <div class="eruda-performance-timing">
+        <div class="eruda-inner-wrapper">
+            {{#each data}}
+                <div class="eruda-bar">
+                    <span style="position:relative;left:{{start}}%;width:{{len}}%">{{name}}({{duration}}ms)</span>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="eruda-performance-timing-data">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time(ms)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each timing}}
+                    <tr>
+                        <td>{{@key}}</td>
+                        <td>{{this}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/if}}
+
+{{#if entries}}
+    <div class="eruda-title">ResourceTiming</div>
+    <ul class="eruda-entries">
+        {{#each entries}}
+            <li class="eruda-entry" data-idx="{{@key}}">
+                <span>{{name}}</span>
+                <span>{{initiatorType}}</span>
+                <span>{{displayTime}}</span>
+                <span class="eruda-blue">{{url}}</span>
+            </li>
+        {{/each}}
+    </ul>
+{{/if}}

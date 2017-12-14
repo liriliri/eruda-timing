@@ -18,6 +18,11 @@
     "plugin",
     "timing"
   ],
+  "eustia": {
+    "files": "./src/**/*.js",
+    "output": "./src/util.js",
+    "format": "commonjs"
+  },
   "author": "redhoodsu",
   "license": "MIT",
   "bugs": {
@@ -31,7 +36,8 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.7",
-    "eruda": "^1.3.1",
+    "eruda": "^1.3.2",
+    "eslint": "^4.12.1",
     "handlebars": "^4.0.11",
     "handlebars-loader": "^1.6.0",
     "node-sass": "^4.7.2",
@@ -40,7 +46,6 @@
     "postcss-loader": "^2.0.9",
     "sass-loader": "^6.0.6",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7",
-    "eslint": "^4.12.1"
+    "webpack-dev-server": "^2.9.7"
   }
 }

@@ -1,6 +1,6 @@
 # eruda-timing
 
-Eruda plugin for xxx.
+Eruda plugin for performance and resource timing.
 
 ## Demo
 
