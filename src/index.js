@@ -199,6 +199,8 @@ module.exports = function (eruda)
             });
             renderData.data = this._performanceTimingData;
             renderData.timing = this._performanceTiming;
+            
+            if (!renderData.timing && !renderData.entries) renderData.notSupported = true;
     
             this._renderHtml(this._tpl(renderData));
         }
