@@ -41,7 +41,6 @@ $gray-light: #eceffe;
     .performance-timing-data {
         padding-bottom: $padding;
         text-align: center;
-        display: none;
         table {
             width: 100%;
             background: #fff;
@@ -93,10 +92,6 @@ $gray-light: #eceffe;
                 background: $gray-light;
             }
         }
-    }
-    .entries {
-        @include overflow-auto(y);
-        max-height: 200px;
     }
     .not-supported {
         background: $red;

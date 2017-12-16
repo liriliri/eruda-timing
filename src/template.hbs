@@ -9,24 +9,26 @@
         </div>
     </div>
 
-    <div class="eruda-performance-timing-data">
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Time(ms)</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each timing}}
+    {{#if showPerformanceDetail}}
+        <div class="eruda-performance-timing-data">
+            <table>
+                <thead>
                     <tr>
-                        <td>{{@key}}</td>
-                        <td>{{this}}</td>
+                        <th>Name</th>
+                        <th>Time(ms)</th>
                     </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    {{#each timing}}
+                        <tr>
+                            <td>{{@key}}</td>
+                            <td>{{this}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{/if}}
 {{/if}}
 
 {{#if entries}}
@@ -35,7 +37,7 @@
         {{#each entries}}
             <li class="eruda-entry" data-idx="{{@key}}">
                 <span>{{name}}</span>
-                <span>{{initiatorType}}</span>
+                {{#if initiatorType}}<span>{{initiatorType}}</span>{{/if}}
                 <span>{{displayTime}}</span>
                 <span class="eruda-blue">{{url}}</span>
             </li>

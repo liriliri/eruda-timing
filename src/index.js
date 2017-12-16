@@ -11,6 +11,7 @@ module.exports = function (eruda)
             this._style = evalCss(require('./style.scss'));
             this._performanceTimingData = [];
             this._performanceTiming = {};
+            this._showPerformanceDetail = false;
             this._resourceTimingData = [];
             this._tpl = require('./template.hbs');
 
@@ -47,7 +48,8 @@ module.exports = function (eruda)
 
             $el.on('click', '.eruda-performance-timing', function ()
             {
-                $el.find('.eruda-performance-timing-data').show();
+                self._showPerformanceDetail = !self._showPerformanceDetail;
+                self._render();
             }).on('click', '.eruda-entry', function ()
             {
                 let idx = $(this).data('idx'),
@@ -57,10 +59,6 @@ module.exports = function (eruda)
                 {
                     showSources('img', data.url);
                 }
-            }).on('click', '.eruda-clear-xhr', function ()
-            {
-                self._requests = {};
-                self._render();
             });
 
             function showSources(type, data)
@@ -199,6 +197,7 @@ module.exports = function (eruda)
             });
             renderData.data = this._performanceTimingData;
             renderData.timing = this._performanceTiming;
+            renderData.showPerformanceDetail = this._showPerformanceDetail;
             
             if (!renderData.timing && !renderData.entries) renderData.notSupported = true;
     
