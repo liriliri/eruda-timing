@@ -59,6 +59,9 @@ module.exports = function (eruda)
                 {
                     showSources('img', data.url);
                 }
+            }).on('click', '.eruda-refresh-resource-timing', () => 
+            {
+                this._render();
             });
 
             function showSources(type, data)
@@ -108,11 +111,13 @@ module.exports = function (eruda)
     
             let start = navigationStart,
                 end = loadEventEnd,
+                ready = true,
                 total = end - start;
     
             function getData(name, startTime, endTime)
             {
                 let duration = endTime - startTime;
+                if (duration < 0) ready = false;
     
                 return {
                     name: name,
@@ -132,6 +137,8 @@ module.exports = function (eruda)
             data.push(getData('Unload', unloadEventStart, unloadEventEnd));
             data.push(getData('DOM Processing', domLoading, domComplete));
             data.push(getData('DOM Construction', domLoading, domInteractive));
+
+            if (!ready) return;
     
             this._performanceTimingData = data;
     
@@ -170,17 +177,34 @@ module.exports = function (eruda)
     
             let entries = this._performance.getEntries(),
                 data = [];
-    
+
+            let totalTime = 0;
+            entries.forEach(entry => 
+            {
+                if (entry.entryType !== 'resource') return;
+                if (entry.responseEnd > totalTime) totalTime = entry.responseEnd;
+            });    
+
             entries.forEach(entry =>
             {
+                if (entry.entryType !== 'resource') return;
+
+                let timeline = {
+                    left: entry.startTime / totalTime * 100,
+                    connection: (entry.requestStart - entry.startTime) / totalTime * 100,
+                    ttfb: (entry.responseStart - entry.requestStart) / totalTime * 100,
+                    response: (entry.responseEnd - entry.responseStart) / totalTime * 100
+                };
+
                 data.push({
                     name: getFileName(entry.name),
-                    displayTime: formatTime(entry.duration),
+                    displayTime: Math.round(entry.duration) + 'ms',
                     url: entry.name,
+                    timeline, 
                     initiatorType: entry.initiatorType
                 });
             });
-    
+
             this._resourceTimingData = data;
         }
         _render()
@@ -191,10 +215,15 @@ module.exports = function (eruda)
     
             let renderData = {entries: this._resourceTimingData};
 
-            util.ready(() => {
+            if (this._performanceTimingData.length === 0) 
+            {
+                util.ready(() => {
+                    this._getPerformanceTimingData();
+                    this._render();
+                });
+            } else {
                 this._getPerformanceTimingData();
-                this._render();
-            });
+            }
             renderData.data = this._performanceTimingData;
             renderData.timing = this._performanceTiming;
             renderData.showPerformanceDetail = this._showPerformanceDetail;
@@ -213,12 +242,3 @@ module.exports = function (eruda)
 
     return new Timing();
 };
-
-function formatTime(time)
-{
-    time = Math.round(time);
-
-    if (time < 1000) return time + 'ms';
-
-    return (time / 1000).toFixed(1) + 's';
-}

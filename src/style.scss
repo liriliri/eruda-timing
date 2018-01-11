@@ -12,8 +12,10 @@ $blue: #2196f3;
 $font-size-s: 12px;
 $red: #f44336;
 $gray: #707d8b;
+$gray-dark: #263238;
 $font-size: 14px;
 $gray-light: #eceffe;
+$anim-duration: .3s;
 
 .timing {
     @include overflow-auto(y);
@@ -64,32 +66,50 @@ $gray-light: #eceffe;
         background: $gray;
         padding: $padding;
         color: #fff;
+        .btn {
+            margin-left: 10px;
+            float: right;
+            background: #fff;
+            color: $gray;
+            text-align: center;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            border-radius: 50%;
+            font-size: 12px;
+            cursor: pointer;
+            transition: color $anim-duration;
+            &:active {
+                color: $gray-dark;
+            }
+        }
     }
     .entries {
         background: #fff;
         border-bottom: 1px solid $gray-light;
         margin-bottom: 10px;
-        li {
-            @include overflow-auto(x);
+        @include overflow-auto(x);
+        table {
             cursor: pointer;
-            border-top: 1px solid $gray-light;
-            height: 41px;
-            white-space: nowrap;
-            &.error {
+            tr:nth-child(4n-1) {
+                background: $gray-light;
+            }
+            td.timeline {
+                padding: 0;
+                height: 4px;
+                font-size: 0;
                 span {
-                    color: $red;
+                    display: inline-block;
+                    height: 100%;
                 }
             }
-            span {
-                display: inline-block;
-                line-height: 40px;
-                height: 40px;
-                padding: 0 10px;
-                font-size: $font-size-s;
-                vertical-align: top;
+            td {
+                border: 1px solid $gray-light;
+                padding: 10px;
+                white-space: nowrap;
             }
-            &:nth-child(even) {
-                background: $gray-light;
+            .right {
+                text-align: right;
             }
         }
     }

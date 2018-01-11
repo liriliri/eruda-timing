@@ -32,17 +32,33 @@
 {{/if}}
 
 {{#if entries}}
-    <div class="eruda-title">ResourceTiming</div>
-    <ul class="eruda-entries">
-        {{#each entries}}
-            <li class="eruda-entry" data-idx="{{@key}}">
-                <span>{{name}}</span>
-                {{#if initiatorType}}<span>{{initiatorType}}</span>{{/if}}
-                <span>{{displayTime}}</span>
-                <span class="eruda-blue">{{url}}</span>
-            </li>
-        {{/each}}
-    </ul>
+    <div class="eruda-title">
+        ResourceTiming
+        <div class="eruda-btn eruda-refresh-resource-timing">
+            <span class="eruda-icon-repeat"></span>
+        </div>
+    </div>
+    <div class="eruda-entries">
+        <table>
+            <tbody>
+                {{#each entries}}
+                    <tr class="eruda-entry" data-idx="{{@key}}">
+                        <td>{{name}}</td>
+                        <td>{{#if initiatorType}}<span>{{initiatorType}}</span>{{/if}}</td>
+                        <td class="eruda-right">{{displayTime}}</td>
+                        <td class="eruda-blue">{{url}}</td>
+                    </tr>
+                    <tr>
+                        <td class="eruda-timeline" colspan="4">
+                            <span style="background: #707d8b; margin-left: {{timeline.left}}%; width: {{timeline.connection}}%;"></span>
+                            <span style="background: #009688; width: {{timeline.ttfb}}%"></span>
+                            <span style="background: #2196f3; width: {{timeline.response}}%"></span>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 {{/if}}
 
 {{#if notSupported}}
