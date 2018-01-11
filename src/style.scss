@@ -90,6 +90,7 @@ $anim-duration: .3s;
         margin-bottom: 10px;
         @include overflow-auto(x);
         table {
+            min-width: 100%;
             cursor: pointer;
             tr:nth-child(4n-1) {
                 background: $gray-light;
