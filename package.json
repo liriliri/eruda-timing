@@ -1,6 +1,6 @@
 {
   "name": "eruda-timing",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "eruda-timing.js",
   "description": "Eruda plugin for performance and resource timing",
   "scripts": {
