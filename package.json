@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --host 0.0.0.0",
     "build": "webpack && webpack -p",
-    "ci": "npm run lint && npm run build",
+    "format": "prettier src/index.js src/style.scss *.js --write",
+    "ci": "npm run format && npm run lint && npm run build",
     "lint": "eslint src/**/*.js"
   },
   "repository": {
@@ -44,6 +45,7 @@
     "postcss": "^6.0.14",
     "postcss-class-prefix": "^0.3.0",
     "postcss-loader": "^2.0.9",
+    "prettier": "^1.13.7",
     "sass-loader": "^6.0.6",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
