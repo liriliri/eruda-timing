@@ -15,7 +15,7 @@ Eruda plugin for performance and resource timing.
 ## Demo
 
 Browse it on your phone: 
-[http://eruda.liriliri.io/](http://eruda.liriliri.io/)
+[http://eruda.liriliri.io/?plugin=timing](http://eruda.liriliri.io/?plugin=timing)
 
 ## Install
 
