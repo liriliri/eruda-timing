@@ -10,6 +10,7 @@
 $padding: 10px;
 $blue: #2196f3;
 $font-size-s: 12px;
+$font-size-l: 16px;
 $red: #f44336;
 $gray: #707d8b;
 $gray-dark: #263238;
@@ -68,16 +69,15 @@ $anim-duration: 0.3s;
     padding: $padding;
     color: #fff;
     .btn {
-      margin-left: 10px;
+      display: flex;
+      margin-left: 5px;
       float: right;
-      background: #fff;
-      color: $gray;
-      text-align: center;
+      color: #fff;
       width: 18px;
       height: 18px;
-      line-height: 18px;
-      border-radius: 50%;
-      font-size: 12px;
+      justify-content: center;
+      align-items: center;
+      font-size: $font-size-l;
       cursor: pointer;
       transition: color $anim-duration;
       &:active {

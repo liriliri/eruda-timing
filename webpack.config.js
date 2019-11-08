@@ -1,13 +1,12 @@
-var autoprefixer = require('autoprefixer'),
-  postcss = require('postcss'),
-  webpack = require('webpack'),
-  pkg = require('./package.json'),
-  classPrefix = require('postcss-class-prefix')
+const autoprefixer = require('autoprefixer')
+const postcss = require('postcss')
+const webpack = require('webpack')
+const pkg = require('./package.json')
+const classPrefix = require('postcss-class-prefix')
 
-var isProduction = process.argv.indexOf('-p') > -1,
-  banner = pkg.name + ' v' + pkg.version + ' ' + pkg.homepage
+const banner = pkg.name + ' v' + pkg.version + ' ' + pkg.homepage
 
-var exports = {
+module.exports = {
   devtool: 'source-map',
   entry: './src/index.js',
   devServer: {
@@ -22,15 +21,15 @@ var exports = {
     libraryTarget: 'umd'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|index\.js/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env'],
-            plugins: ['transform-runtime']
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-transform-runtime']
           }
         }
       },
@@ -72,18 +71,3 @@ var exports = {
   },
   plugins: [new webpack.BannerPlugin(banner)]
 }
-
-if (isProduction) {
-  exports.devtool = false
-  exports.output.filename = 'eruda-timing.min.js'
-  exports.plugins = exports.plugins.concat([
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      comments: /eruda-timing/
-    })
-  ])
-}
-
-module.exports = exports
