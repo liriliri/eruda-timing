@@ -8,14 +8,9 @@
 }
 
 $padding: 10px;
-$blue: #2196f3;
 $font-size-s: 12px;
 $font-size-l: 16px;
-$red: #f44336;
-$gray: #707d8b;
-$gray-dark: #263238;
 $font-size: 14px;
-$gray-light: #eceffe;
 $anim-duration: 0.3s;
 
 .timing {
@@ -23,16 +18,15 @@ $anim-duration: 0.3s;
   .performance-timing {
     padding: $padding 0;
     .inner-wrapper {
-      background: $blue;
+      background: var(--darker-background);
       .bar {
         @include overflow-auto(x);
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid var(--border);
         span {
           font-size: $font-size-s;
           white-space: nowrap;
-          color: #fff;
           padding: 5px 0;
-          background: $red;
+          background: var(--highlight);
           display: inline-block;
         }
         &:last-child {
@@ -46,13 +40,11 @@ $anim-duration: 0.3s;
     text-align: center;
     table {
       width: 100%;
-      background: #fff;
       border-collapse: collapse;
       text-align: left;
       th {
-        background: $gray;
+        background: var(--darker-background);
         text-align: left;
-        color: #fff;
         font-size: $font-size;
       }
       td {
@@ -61,18 +53,21 @@ $anim-duration: 0.3s;
       th,
       td {
         padding: 10px;
+        border: 1px solid var(--border);
+      }
+      tr:nth-child(even) {
+        background: var(--contrast);
       }
     }
   }
   .title {
-    background: $gray;
+    border-top: 1px solid var(--border);
+    background: var(--darker-background);
     padding: $padding;
-    color: #fff;
     .btn {
       display: flex;
       margin-left: 5px;
       float: right;
-      color: #fff;
       width: 18px;
       height: 18px;
       justify-content: center;
@@ -81,20 +76,19 @@ $anim-duration: 0.3s;
       cursor: pointer;
       transition: color $anim-duration;
       &:active {
-        color: $gray-dark;
+        color: var(--select-foreground);
       }
     }
   }
   .entries {
-    background: #fff;
-    border-bottom: 1px solid $gray-light;
+    border-bottom: 1px solid var(--border);
     margin-bottom: 10px;
     @include overflow-auto(x);
     table {
       min-width: 100%;
       cursor: pointer;
       tr:nth-child(4n-1) {
-        background: $gray-light;
+        background: var(--contrast);
       }
       td.timeline {
         padding: 0;
@@ -106,7 +100,7 @@ $anim-duration: 0.3s;
         }
       }
       td {
-        border: 1px solid $gray-light;
+        border: 1px solid var(--border);
         padding: 10px;
         white-space: nowrap;
       }
@@ -116,13 +110,11 @@ $anim-duration: 0.3s;
     }
   }
   .not-supported {
-    background: $red;
-    color: #fff;
+    background: var(--console-error-background);
+    border: 1px solid var(--console-error-border);
+    color: var(--console-error-foreground);
     margin: 10px;
     padding: $padding;
-    border-radius: 4px;
     text-align: center;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08),
-      0 3px 1px -2px rgba(0, 0, 0, 0.2);
   }
 }

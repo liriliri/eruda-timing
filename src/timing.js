@@ -216,9 +216,10 @@ export default function(eruda) {
       renderData.timing = this._performanceTiming
       renderData.showPerformanceDetail = this._showPerformanceDetail
 
-      if (!renderData.timing && !renderData.entries)
+      if (!renderData.timing && !renderData.entries) {
         renderData.notSupported = true
-
+      }
+      
       this._renderHtml(this._tpl(renderData))
     }
     _renderHtml(html) {

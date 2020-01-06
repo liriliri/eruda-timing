@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>Eruda-timing</title>
-    </head>
-    <body>
-        <script src="node_modules/eruda/eruda.js"></script>
-        <script>eruda.init({tool: ['sources']});</script>
-        <script src="assets/eruda-timing.js"></script>
-        <script>eruda.add(erudaTiming).show('timing').show();</script>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>Eruda-timing</title>
+  </head>
+  <body>
+    <script src="node_modules/eruda/eruda.js"></script>
+    <script>
+      eruda.init({ tool: ['sources'] })
+    </script>
+    <script src="assets/eruda-timing.js"></script>
+    <script>
+      eruda
+        .add(erudaTiming)
+        .show('timing')
+        .show()
+    </script>
+  </body>
 </html>
