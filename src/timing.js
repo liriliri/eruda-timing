@@ -222,7 +222,7 @@ export default function(eruda) {
       if (!renderData.timing && !renderData.entries) {
         renderData.notSupported = true
       }
-      
+
       this._renderHtml(this._tpl(renderData))
     }
     _renderHtml(html) {
