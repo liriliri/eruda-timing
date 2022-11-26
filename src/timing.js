@@ -1,7 +1,10 @@
-import util from './util'
+import ready from 'licia/ready'
+import isFn from 'licia/isFn'
+import $ from 'licia/$'
+import { getFileName } from './util'
 
 export default function(eruda) {
-  let { evalCss, getFileName, $ } = eruda.util
+  let { evalCss } = eruda.util
 
   class Timing extends eruda.Tool {
     constructor() {
@@ -16,7 +19,7 @@ export default function(eruda) {
 
       let performance = (this._performance =
         window.webkitPerformance || window.performance)
-      this._hasResourceTiming = performance && util.isFn(performance.getEntries)
+      this._hasResourceTiming = performance && isFn(performance.getEntries)
     }
     init($el, container) {
       super.init($el, container)
@@ -205,7 +208,7 @@ export default function(eruda) {
       let renderData = { entries: this._resourceTimingData }
 
       if (this._performanceTimingData.length === 0) {
-        util.ready(() => {
+        ready(() => {
           this._getPerformanceTimingData()
           this._render()
         })

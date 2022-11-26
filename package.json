@@ -19,11 +19,6 @@
     "plugin",
     "timing"
   ],
-  "eustia": {
-    "files": "./src/**/*.js",
-    "output": "./src/util.js",
-    "format": "commonjs"
-  },
   "author": "redhoodsu",
   "license": "MIT",
   "bugs": {
@@ -42,6 +37,7 @@
     "eslint": "^6.6.0",
     "handlebars": "^4.5.1",
     "handlebars-loader": "^1.7.1",
+    "licia": "^1.37.0",
     "node-sass": "^4.13.0",
     "postcss": "^7.0.21",
     "postcss-class-prefix": "^0.3.0",
