@@ -23,7 +23,6 @@ jobs:
           npm i
           npm run build
       - name: Publish package on NPM
-        working-directory: dist
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
